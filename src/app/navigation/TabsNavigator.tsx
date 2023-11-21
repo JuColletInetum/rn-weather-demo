@@ -2,6 +2,7 @@ import React from 'react';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 
 import {Icons} from '../../common/assets';
+import MyLocationScreen from '../screens/myLocation/MyLocationScreen';
 import * as ROUTES from './routes';
 import colors from '../../common/primitives/colors';
 import {size} from '../../common/primitives';
@@ -25,7 +26,7 @@ function TabsNavigator() {
       }}>
       <Tab.Screen
         name={ROUTES.MY_LOCATION_SCREEN}
-        component={() => null}
+        component={MyLocationScreen}
         options={{
           headerStyle: {
             backgroundColor: 'transparent',
