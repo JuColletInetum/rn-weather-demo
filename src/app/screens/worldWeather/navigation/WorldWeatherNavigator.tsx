@@ -2,6 +2,7 @@ import {StyleSheet} from 'react-native';
 import {createStackNavigator} from '@react-navigation/stack';
 
 import * as ROUTES from './routes';
+import WorldWeatherLocationPicker from '../WorldLocationPickerScreen';
 import {size} from '../../../../common/primitives';
 import colors from '../../../../common/primitives/colors';
 
@@ -18,7 +19,7 @@ function WeatherNavigator() {
       }}>
       <Stack.Screen
         name={ROUTES.WORLD_LOCATION_PICKER_SCREEN}
-        component={() => null}
+        component={WorldWeatherLocationPicker}
         options={{
           headerTitle: 'Pick a country',
         }}
