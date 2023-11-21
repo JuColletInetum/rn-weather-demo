@@ -2,6 +2,7 @@ import React from 'react';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 
 import {Icons} from '../../common/assets';
+import WeatherNavigator from '../screens/worldWeather/navigation/WorldWeatherNavigator';
 import MyLocationScreen from '../screens/myLocation/MyLocationScreen';
 import * as ROUTES from './routes';
 import colors from '../../common/primitives/colors';
@@ -9,7 +10,7 @@ import {size} from '../../common/primitives';
 
 const Tab = createBottomTabNavigator();
 
-const ICON_SIZE = size[1];
+const ICON_SIZE = 16;
 
 const getFocusedColor = (focused: boolean) =>
   focused ? colors.fontColor : colors.fontLightColor;
@@ -44,7 +45,7 @@ function TabsNavigator() {
       />
       <Tab.Screen
         name={ROUTES.WORLD_WEATHER_NAVIGATOR}
-        component={() => null}
+        component={WeatherNavigator}
         options={{
           headerShown: false,
           title: 'World weather',
