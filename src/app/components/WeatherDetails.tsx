@@ -1,4 +1,4 @@
-import {Text, StyleSheet, View, ScrollView} from 'react-native';
+import {Text, StyleSheet, View, FlatList} from 'react-native';
 
 import {WeatherData, getHourlyForecast} from '../../core/hooks/useWeatherApi';
 import {size} from '../../common/primitives';
@@ -22,20 +22,21 @@ const WeatherDetails = ({data}: Props) => (
       <Text
         style={styles.temperature}>{`${data.current.temperature_2m}°`}</Text>
     </View>
-    <ScrollView
-      alwaysBounceHorizontal={false}
-      horizontal
-      style={styles.forecastContainer}
-      showsHorizontalScrollIndicator={false}>
-      {getHourlyForecast(data.hourly).map(({time, temperature, code}) => (
+    <FlatList
+      data={getHourlyForecast(data.hourly)}
+      renderItem={({item: {time, temperature, code}}) => (
         <WeatherForecastTile
           key={time}
           time={time}
           temperature={temperature}
           code={code}
         />
-      ))}
-    </ScrollView>
+      )}
+      alwaysBounceHorizontal={false}
+      showsHorizontalScrollIndicator={false}
+      style={styles.forecastContainer}
+      horizontal
+    />
   </View>
 );
 

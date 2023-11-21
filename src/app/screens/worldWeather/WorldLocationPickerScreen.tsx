@@ -1,11 +1,4 @@
-import {
-  View,
-  Text,
-  ScrollView,
-  StyleSheet,
-  Pressable,
-  FlatList,
-} from 'react-native';
+import {View, Text, StyleSheet, Pressable, FlatList} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 
 import countries from '../../../common/assets/data/countries';
@@ -23,21 +16,23 @@ const LocationPickerScreen = () => {
   const navigation = useNavigation<NavProp['navigation']>();
 
   return (
-    <ScrollView style={styles.container}>
-      {countries.map(country => (
+    <FlatList
+      style={styles.container}
+      renderItem={({item}) => (
         <Pressable
-          key={country.name}
+          key={item.name}
           onPress={() => {
             navigation.navigate(ROUTES.WORLD_WEATHER_DETAILS_SCREEN, {
-              country: country.name,
+              country: item.name,
             });
           }}>
           <View style={styles.listItemContainer}>
-            <Text style={styles.listItemTitle}>{country.name}</Text>
+            <Text style={styles.listItemTitle}>{item.name}</Text>
           </View>
         </Pressable>
-      ))}
-    </ScrollView>
+      )}
+      data={countries}
+    />
   );
 };
 
