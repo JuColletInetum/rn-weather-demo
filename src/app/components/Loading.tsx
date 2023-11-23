@@ -1,4 +1,4 @@
-import {useEffect, useState, useRef} from 'react';
+import {useEffect, useRef} from 'react';
 import {View, StyleSheet, Animated, Easing} from 'react-native';
 import {Images} from '../../common/assets';
 import {size} from '../../common/primitives';
@@ -34,13 +34,6 @@ const Loading = () => {
           width={size[3]}
           height={size[3]}
           color={colors.fontColor}
-          style={{
-            transform: [
-              {
-                rotate: `${rotation}deg`,
-              },
-            ],
-          }}
         />
       </Animated.View>
     </View>

@@ -13,10 +13,16 @@ const useLocation = () => {
     setIsLoading(true);
     let hasPermission = await RNLocation.checkPermission({
       ios: 'whenInUse',
+      android: {
+        detail: 'coarse',
+      },
     });
     if (!hasPermission) {
       hasPermission = await RNLocation.requestPermission({
         ios: 'whenInUse',
+        android: {
+          detail: 'coarse',
+        },
       });
     }
     if (hasPermission) {
