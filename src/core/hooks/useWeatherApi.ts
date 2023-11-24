@@ -34,6 +34,8 @@ const useWeatherApi = ({
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
+    const abortController = new AbortController();
+
     const fetchData = async () => {
       setIsLoading(true);
       if (latitude == null || longitude == null) {
@@ -47,13 +49,17 @@ const useWeatherApi = ({
         hourly: 'temperature_2m,weather_code',
       }).toString();
 
-      const res = await fetch(`${BASE_URL}?${params}`);
+      const res = await fetch(`${BASE_URL}?${params}`, {
+        signal: abortController.signal,
+      });
       setData(await res.json());
       setIsLoading(false);
     };
     if (latitude != null && longitude != null) {
       fetchData();
     }
+
+    return () => abortController.abort();
   }, [latitude, longitude]);
 
   return {
